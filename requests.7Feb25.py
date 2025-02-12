@@ -58,8 +58,18 @@ def call_api():
 # version 2 # only saves latest file, not everything, but work so far.
     with open('json.txt', 'w') as file:
         data = {symbol: json_response['price']}
-        json.dump(data, file, indent=4, default=float)
+        file.write(json.dumps(data))
+        file.write('\n')
         print(f"Price saved to json.txt")
+
+# version 3 # saves multiple lines in file & includes serialization
+    # with open('json2.txt', 'wb') as file: # open file in binary write mode
+    #     for symbol, json_response in zip(symbol, json_response):
+    #         data = {symbol: json_response['price']}
+    #         serialized_data = json.dumps(data, indent=4, default=str).encode('utf-8')
+    #         file.write(serialized_data)
+    #         file.write(b'\n')  # Add a new line for each entry
+    #     print("Prices saved to json.txt")
 
 if __name__ == "__main__":
     while True:
